@@ -1,0 +1,14 @@
+{
+  "resourceName": "s3rpicsstorage69f99ba8",
+  "bucketName": "rpics-storage-69f99ba8",
+  "policyUUID": "2a242174",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}

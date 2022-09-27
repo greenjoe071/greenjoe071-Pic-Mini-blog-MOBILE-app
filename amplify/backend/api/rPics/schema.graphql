@@ -1,0 +1,33 @@
+type Likes @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  userID: ID! @index(name: "byUser")
+  postID: ID! @index(name: "byPost")
+}
+
+type Comments @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  text: String
+  userID: ID! @index(name: "byUser")
+  postID: ID! @index(name: "byPost")
+}
+
+type Post @model @auth(rules: [{allow: public}, {allow: owner}]) {
+  id: ID!
+  description: String
+  image: String
+  numberOfLikes: Int
+  numberOfShares: Int
+  User: User @hasOne
+  comments: String
+  Likes: [Likes] @hasMany(indexName: "byPost", fields: ["id"])
+  Comments: [Comments] @hasMany(indexName: "byPost", fields: ["id"])
+}
+
+type User @model @auth(rules: [{allow: public}, {allow: owner}]) {
+  id: ID!
+  name: String!
+  image: String
+  Likes: [Likes] @hasMany(indexName: "byUser", fields: ["id"])
+  Comments: [Comments] @hasMany(indexName: "byUser", fields: ["id"])
+}
+ 
